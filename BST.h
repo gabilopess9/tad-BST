@@ -25,11 +25,11 @@ public:
 
     void insereAux(No *no, int chave);
 
-    void imprimeEmOrdem(No *no);
+    void emOrdem(No *no);
 
-    void imprimePreOrdem(No *no);
+    void preOrdem(No *no);
 
-    void imprimePosOrdem(No *no);
+    void posOrdem(No *no);
 
     int imprimeAlturaArvore(No *no);
 
