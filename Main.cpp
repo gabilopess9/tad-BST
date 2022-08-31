@@ -89,7 +89,7 @@ int main() {
                     cout << "\n A árvore está vazia!";
                     break;
                 } else {
-                    arvoreBst.imprimeEmOrdem(arvoreBst.getRaiz());
+                    arvoreBst.emOrdem(arvoreBst.getRaiz());
                     break;
                 }
             }
@@ -101,7 +101,7 @@ int main() {
                     cout << "\n A árvore está vazia!";
                     break;
                 } else {
-                    arvoreBst.imprimePreOrdem(arvoreBst.getRaiz());
+                    arvoreBst.preOrdem(arvoreBst.getRaiz());
                     break;
                 }
             }
@@ -113,7 +113,7 @@ int main() {
                     cout << "\n A árvore está vazia!";
                     break;
                 } else {
-                    arvoreBst.imprimePosOrdem(arvoreBst.getRaiz());
+                    arvoreBst.posOrdem(arvoreBst.getRaiz());
                     break;
                 }
             }
