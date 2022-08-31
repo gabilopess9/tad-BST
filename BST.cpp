@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include "No.h"
-#include "ArvoreBST.h"
+#include "BST.h"
 
 using namespace std;
 
@@ -46,26 +46,27 @@ No *ArvoreBST::getRaiz() {
     return raiz;
 }
 
-void ArvoreBST::imprimeEmOrdem(No *no) {
-    if (no != nullptr) {
-        imprimeEmOrdem(no->getEsq());
+void ArvoreBST::emOrdem(No *no) {
+    if (no != nullptr) 
+    {
+        emOrdem(no->getEsq());
         cout << no->getChave() << " ";
-        imprimeEmOrdem(no->getDir());
+        emOrdem(no->getDir());
     }
 }
 
-void ArvoreBST::imprimePreOrdem(No *no) {
+void ArvoreBST::preOrdem(No *no) {
     if (no != nullptr) {
         cout << no->getChave() << " ";
-        imprimePreOrdem(no->getEsq());
-        imprimePreOrdem(no->getDir());
+        preOrdem(no->getEsq());
+        preOrdem(no->getDir());
     }
 }
 
-void ArvoreBST::imprimePosOrdem(No *no) {
+void ArvoreBST::posOrdem(No *no) {
     if (no != nullptr) {
-        imprimePosOrdem(no->getEsq());
-        imprimePosOrdem(no->getDir());
+        posOrdem(no->getEsq());
+        posOrdem(no->getDir());
         cout << no->getChave() << " ";
     }
 }
