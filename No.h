@@ -15,8 +15,7 @@
 class No {
 
 private:
-    No* esq;
-    No* dir;
+    No *esq, *dir;
 
 public:
     No(int);
