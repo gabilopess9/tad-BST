@@ -1,0 +1,160 @@
+#include <iostream>
+#include "No.h"
+#include "BST.h"
+
+using namespace std;
+
+ArvoreBST::ArvoreBST() {
+    raiz = nullptr;
+}
+
+void ArvoreBST::insereElemento(int chave) {
+    if (raiz == nullptr)                                  
+        raiz = new No(chave);                              
+    else insereAux(raiz, chave);
+}
+
+void ArvoreBST::insereAux(No *no, int chave) {
+    if (chave < no->getChave()) {                           
+        if (no->getEsq() == nullptr) {                      
+            No *novo_no = new No(chave);
+            no->setEsq(novo_no);                            
+        } else {
+            insereAux(no->getEsq(), chave);                 
+        }
+    } else if (chave > no->getChave()) {                   
+        if (no->getDir() == nullptr) {                      
+            No *novo_no = new No(chave);
+            no->setDir(novo_no);                            
+        } else {
+            insereAux(no->getDir(), chave);                 
+        }
+    }     
+}
+
+No *ArvoreBST::getRaiz() {
+    return raiz;
+}
+
+void ArvoreBST::emOrdem(No *no) {
+    if (no != nullptr) 
+    {
+        emOrdem(no->getEsq());
+        cout << no->getChave() << " ";
+        emOrdem(no->getDir());
+    }
+}
+
+void ArvoreBST::preOrdem(No *no) {
+    if (no != nullptr) {
+        cout << no->getChave() << " ";
+        preOrdem(no->getEsq());
+        preOrdem(no->getDir());
+    }
+}
+
+void ArvoreBST::posOrdem(No *no) {
+    if (no != nullptr) {
+        posOrdem(no->getEsq());
+        posOrdem(no->getDir());
+        cout << no->getChave() << " ";
+    }
+}
+
+No *ArvoreBST::pesquisarRec(No *no, int chave) {
+    if (no == nullptr || no->getChave() == chave) return no;                                                           
+    else if (no->getChave() > chave) {                             
+        return pesquisarRec(no->getEsq(), chave);            
+    } 
+	else {
+        return pesquisarRec(no->getDir(), chave);             
+    }
+}
+
+No *ArvoreBST::pesquisarIter(No *no, int chave){
+	while (no !=nullptr ){
+		if (no->getChave()==chave) return no;
+		else if(no->getChave() >chave)
+			no->getEsq();
+		else
+			no->getDir();
+			
+	}
+	return nullptr;
+}
+
+
+int ArvoreBST::qdeNos(No *no) {
+    if (no == nullptr) return 0;                                                                    
+    else return (1 + qdeNos(no->getEsq()) + qdeNos(no->getDir()));                
+}
+
+
+int ArvoreBST::alturaBST(No *no) {
+    if (no == nullptr) return -1;                                                                 
+    else {
+        if (no->getEsq() == nullptr && no->getDir() == nullptr)
+            return 0;                                          
+        else {
+            if (alturaBST(no->getEsq()) >
+                alturaBST(no->getDir()))         
+                return (1 + alturaBST(no->getEsq()));
+            else
+                return (1 + alturaBST(no->getDir()));
+        }
+    }
+}
+
+int ArvoreBST::min(No *no) {
+    if (no == nullptr) return 0;
+    if (no->getEsq() == nullptr) return no->getChave();         
+    else return min(no->getEsq());              
+}
+
+int ArvoreBST::max(No *no) {
+    if (no == nullptr) return 0;
+    if (no->getDir() == nullptr) return no->getChave();         
+    else return max(no->getDir());                
+}
+
+int ArvoreBST::folhas(No *no) {
+    if (no != nullptr){
+    	if (no->getEsq() == nullptr && no->getDir() == nullptr){
+    		cout<<no->getChave() << " ";
+		}
+		folhas(no->getEsq());
+		folhas(no->getDir());
+	}
+    
+}
+
+bool ArvoreBST::removerFolha(int chave) {
+    if (raiz == nullptr) return false;                                                      
+    No *anda = raiz;
+    No *ant = raiz; 
+	bool temFilhoEsq = true;                                           
+    while (anda->getChave() != chave) {                                       
+        ant = anda;
+        if (chave < anda->getChave()) {                                                
+            anda = anda->getEsq();
+            temFilhoEsq = true;
+        } else {                                                                         
+            anda = anda->getDir();
+            temFilhoEsq = false;
+        }                        
+    }
+    
+ 	if (anda->getEsq() == nullptr && anda->getDir() == nullptr) {
+        if (anda == raiz) raiz = nullptr;
+        else if (temFilhoEsq)
+            ant->setEsq(nullptr);
+        else
+            ant->setDir(nullptr);                                                               
+    }
+    
+    else{
+    	return false;
+	}
+	return true;
+}
+
