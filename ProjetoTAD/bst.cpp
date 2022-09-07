@@ -62,7 +62,7 @@ void ArvoreBST::posOrdem(No *no) {
 }
 
 No *ArvoreBST::pesquisarRec(No *no, int chave) {
-    if (no == nullptr || no->getChave() == chave) return no;      /**Se o nó for nulo ou o nó for a chave ele retorna o elemento                                                     
+    if (no == nullptr || no->getChave() == chave) return no;      /**Se o nó for nulo ou o nó for a chave ele retorna o elemento*/                                                     
     else if (no->getChave() > chave) {                             
         return pesquisarRec(no->getEsq(), chave);            /**Recursão para esquerda da árvore se o elemento for menor que nó*/
     } 
